@@ -4,6 +4,10 @@
         "epwm.h": "c",
         "dsp28x_project.h": "c",
         "low_pass_filter.h": "c",
-        "iqmathlib.h": "c"
+        "iqmathlib.h": "c",
+        "parameter.h": "c",
+        "user_svpwm_2l.h": "c",
+        "rampgen.h": "c",
+        "user_all_h_data.h": "c"
     }
 }

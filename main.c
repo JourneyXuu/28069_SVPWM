@@ -10,6 +10,35 @@
 #include "OLED.h"
 #include "bsp_key.h"
 #include "MENU.h"
+#include "hardware_config.h"
+#include "user_svpwm_2l.h"
+#include "rampgen.h"
+#include "parameter.h"
+
+/************00.Private parameter Start*****************/
+    float svpwm_ua = 0;
+    float svpwm_ub = 0;
+    float svpwm_uc = 0;
+    float udc = 0;
+/************00.Private parameter End*****************/
+
+/************01.Private Flag End*****************/
+    Uint8 Run_Flag = 0; //运行标志位
+    Uint8 Stop_Flag =1;
+
+/************01.Private Flag End*****************/
+
+
+/************02.Private Structure Start*****************/
+SVPWM_2L svpwm_2l = SVPWM_2L_DEFAULTS;
+
+RAMPGEN rampgen1 = RAMPGEN_DEFAULTS;
+RAMPGEN rampgen2 = RAMPGEN_DEFAULTS;
+RAMPGEN rampgen3 = RAMPGEN_DEFAULTS;
+
+
+/************02.Private Structure End*****************/
+
 
 #define _FLASHOK 1
 
@@ -37,13 +66,22 @@ void main()
     PieVectTable.ADCINT1 = &Adc_ISR;//AD中断函数向量定义
     EDIS;
 
+    Hardware_Config();
     #ifdef _FLASHOK
     MemCopy(&RamfuncsLoadStart, &RamfuncsLoadEnd, &RamfuncsRunStart);
     InitFlash();
     #endif
 
-    GPIO_Init();
-    OLED_Init();
+/************02.Private Structure Init Start*****************/
+    rampgen1.Angle = 0;
+    rampgen2.Angle = 0.333 * PI; //120 degrees
+    rampgen3.Angle = 0.666 * PI; //240 degrees
+
+/************02.Private Structure Init End*****************/
+
+
+
+
     OLED_Refresh();
     OLED_Clear();
 //    OLED_ShowString(0,0,"Uab:",16,1);
@@ -73,20 +111,43 @@ void main()
 interrupt void Adc_ISR(void)
 {
 
+        /*adc sample*/
+        //1.line voltage vab、vbc
+        //2.DC voltage vdc
+        //3.line current ia、ib
+
+/************01.Grid connection Begin**************/
+        //abc -> alpha-beta
 
 
 
+        //alpha-beta -> d-q
 
 
+        //svpwm cal
 
 
+        //PLL+PI
 
 
+/************01.Grid connection End**************/
 
+/************02.Grid Off Begin**************/
+        rampgen_calc(&rampgen1);
+        rampgen_calc(&rampgen2);
+        rampgen_calc(&rampgen3);
+        //1.Generate ud、uq
 
+        //2.ud、uq -> alpha-beta
 
+        //3.alpha-beta -> abc
 
+        //4.abc -> SVPWM
+        svpwm_2l.Ualpha = svpwm_ua;
+        svpwm_2l.Ubeta = svpwm_ub;
+        svpwm_2l.Udc = udc;
 
+/************02.Grid Off End**************/
 
 
 
