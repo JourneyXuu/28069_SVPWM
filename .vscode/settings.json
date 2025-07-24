@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "hardware_config.h": "c",
+        "epwm.h": "c",
+        "dsp28x_project.h": "c"
+    }
+}
