@@ -112,6 +112,8 @@ PDE_DEPS__QUOTED :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
+User/Algorithm \
+User/App \
 User/Devices/IIC \
 User/Devices/OLED \
 User/bsp \

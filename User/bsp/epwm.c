@@ -38,21 +38,7 @@ void Master_EPWM_Init(void)
     EPwm1Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;//极性选择开关
     EPwm1Regs.DBFED = 80;               //死区8*1/60MHz
     EPwm1Regs.DBRED = 80;               //死区8*1/60MHz
-    /*初始化计数器数值*                  //配置完死区后 默认互补单独调节A B无效
-    EPwm1Regs.CMPA.half.CMPA = 0;// 第一个周期待定
-    EPwm1Regs.CMPB = 0;//设置完死区后 该项失效
-    /*中断使能配置*/
-    //EALLOW;
-    // Enable CPU INT3 which is connected to EPWM1-3 INT:
-/*
-    IER |= M_INT1;
-    // Enable EPWM INTn in the PIE: Group 3 interrupt 1-3
-       PieCtrlRegs.PIEIER1.bit.INTx1 = 1;
-       EDIS;
-       PieCtrlRegs.PIEACK.all |= PIEACK_GROUP1;
-*/
-    //PieCtrlRegs.PIEIER3.bit.INTx1 = 1;
-    //IER |= M_INT3;//中断使能 EPWM1 INT3.1
+
     EDIS;
 }
 

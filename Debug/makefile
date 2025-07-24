@@ -11,11 +11,16 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./main.obj" \
+"./User/Algorithm/low_pass_filter.obj" \
+"./User/App/hardware_config.obj" \
 "./User/Devices/IIC/IIC.obj" \
 "./User/Devices/OLED/MENU.obj" \
 "./User/Devices/OLED/OLED.obj" \
 "./User/bsp/F2806x_MemCopy.obj" \
+"./User/bsp/adc.obj" \
 "./User/bsp/bsp_key.obj" \
+"./User/bsp/epwm.obj" \
+"./User/bsp/gpio.obj" \
 "./libraries/source/F2806x_Adc.obj" \
 "./libraries/source/F2806x_CodeStartBranch.obj" \
 "./libraries/source/F2806x_Comp.obj" \
@@ -56,6 +61,8 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include User/Algorithm/subdir_vars.mk
+-include User/App/subdir_vars.mk
 -include User/Devices/IIC/subdir_vars.mk
 -include User/Devices/OLED/subdir_vars.mk
 -include User/bsp/subdir_vars.mk
@@ -63,6 +70,8 @@ RMDIR := RMDIR /S/Q
 -include libraries/lib/subdir_vars.mk
 -include libraries/source/subdir_vars.mk
 -include subdir_rules.mk
+-include User/Algorithm/subdir_rules.mk
+-include User/App/subdir_rules.mk
 -include User/Devices/IIC/subdir_rules.mk
 -include User/Devices/OLED/subdir_rules.mk
 -include User/bsp/subdir_rules.mk
@@ -186,9 +195,9 @@ all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "User\Devices\IIC\IIC.obj" "User\Devices\OLED\MENU.obj" "User\Devices\OLED\OLED.obj" "User\bsp\F2806x_MemCopy.obj" "User\bsp\bsp_key.obj" "libraries\source\F2806x_Adc.obj" "libraries\source\F2806x_CodeStartBranch.obj" "libraries\source\F2806x_Comp.obj" "libraries\source\F2806x_CpuTimers.obj" "libraries\source\F2806x_DBGIER.obj" "libraries\source\F2806x_DefaultIsr.obj" "libraries\source\F2806x_DisInt.obj" "libraries\source\F2806x_Dma.obj" "libraries\source\F2806x_ECan.obj" "libraries\source\F2806x_ECap.obj" "libraries\source\F2806x_EPwm.obj" "libraries\source\F2806x_EQep.obj" "libraries\source\F2806x_GlobalVariableDefs.obj" "libraries\source\F2806x_Gpio.obj" "libraries\source\F2806x_HRCap.obj" "libraries\source\F2806x_I2C.obj" "libraries\source\F2806x_Mcbsp.obj" "libraries\source\F2806x_OscComp.obj" "libraries\source\F2806x_PieCtrl.obj" "libraries\source\F2806x_PieVect.obj" "libraries\source\F2806x_Sci.obj" "libraries\source\F2806x_Spi.obj" "libraries\source\F2806x_SysCtrl.obj" 
-	-$(RM) "libraries\source\F2806x_TempSensorConv.obj" "libraries\source\F2806x_usDelay.obj" 
-	-$(RM) "main.d" "User\Devices\IIC\IIC.d" "User\Devices\OLED\MENU.d" "User\Devices\OLED\OLED.d" "User\bsp\F2806x_MemCopy.d" "User\bsp\bsp_key.d" "libraries\source\F2806x_Adc.d" "libraries\source\F2806x_Comp.d" "libraries\source\F2806x_CpuTimers.d" "libraries\source\F2806x_DefaultIsr.d" "libraries\source\F2806x_Dma.d" "libraries\source\F2806x_ECan.d" "libraries\source\F2806x_ECap.d" "libraries\source\F2806x_EPwm.d" "libraries\source\F2806x_EQep.d" "libraries\source\F2806x_GlobalVariableDefs.d" "libraries\source\F2806x_Gpio.d" "libraries\source\F2806x_HRCap.d" "libraries\source\F2806x_I2C.d" "libraries\source\F2806x_Mcbsp.d" "libraries\source\F2806x_OscComp.d" "libraries\source\F2806x_PieCtrl.d" "libraries\source\F2806x_PieVect.d" "libraries\source\F2806x_Sci.d" "libraries\source\F2806x_Spi.d" "libraries\source\F2806x_SysCtrl.d" "libraries\source\F2806x_TempSensorConv.d" 
+	-$(RM) "main.obj" "User\Algorithm\low_pass_filter.obj" "User\App\hardware_config.obj" "User\Devices\IIC\IIC.obj" "User\Devices\OLED\MENU.obj" "User\Devices\OLED\OLED.obj" "User\bsp\F2806x_MemCopy.obj" "User\bsp\adc.obj" "User\bsp\bsp_key.obj" "User\bsp\epwm.obj" "User\bsp\gpio.obj" "libraries\source\F2806x_Adc.obj" "libraries\source\F2806x_CodeStartBranch.obj" "libraries\source\F2806x_Comp.obj" "libraries\source\F2806x_CpuTimers.obj" "libraries\source\F2806x_DBGIER.obj" "libraries\source\F2806x_DefaultIsr.obj" "libraries\source\F2806x_DisInt.obj" "libraries\source\F2806x_Dma.obj" "libraries\source\F2806x_ECan.obj" "libraries\source\F2806x_ECap.obj" "libraries\source\F2806x_EPwm.obj" "libraries\source\F2806x_EQep.obj" "libraries\source\F2806x_GlobalVariableDefs.obj" "libraries\source\F2806x_Gpio.obj" "libraries\source\F2806x_HRCap.obj" "libraries\source\F2806x_I2C.obj" "libraries\source\F2806x_Mcbsp.obj" "libraries\source\F2806x_OscComp.obj" "libraries\source\F2806x_PieCtrl.obj" "libraries\source\F2806x_PieVect.obj" 
+	-$(RM) "libraries\source\F2806x_Sci.obj" "libraries\source\F2806x_Spi.obj" "libraries\source\F2806x_SysCtrl.obj" "libraries\source\F2806x_TempSensorConv.obj" "libraries\source\F2806x_usDelay.obj" 
+	-$(RM) "main.d" "User\Algorithm\low_pass_filter.d" "User\App\hardware_config.d" "User\Devices\IIC\IIC.d" "User\Devices\OLED\MENU.d" "User\Devices\OLED\OLED.d" "User\bsp\F2806x_MemCopy.d" "User\bsp\adc.d" "User\bsp\bsp_key.d" "User\bsp\epwm.d" "User\bsp\gpio.d" "libraries\source\F2806x_Adc.d" "libraries\source\F2806x_Comp.d" "libraries\source\F2806x_CpuTimers.d" "libraries\source\F2806x_DefaultIsr.d" "libraries\source\F2806x_Dma.d" "libraries\source\F2806x_ECan.d" "libraries\source\F2806x_ECap.d" "libraries\source\F2806x_EPwm.d" "libraries\source\F2806x_EQep.d" "libraries\source\F2806x_GlobalVariableDefs.d" "libraries\source\F2806x_Gpio.d" "libraries\source\F2806x_HRCap.d" "libraries\source\F2806x_I2C.d" "libraries\source\F2806x_Mcbsp.d" "libraries\source\F2806x_OscComp.d" "libraries\source\F2806x_PieCtrl.d" "libraries\source\F2806x_PieVect.d" "libraries\source\F2806x_Sci.d" "libraries\source\F2806x_Spi.d" "libraries\source\F2806x_SysCtrl.d" "libraries\source\F2806x_TempSensorConv.d" 
 	-$(RM) "libraries\source\F2806x_CodeStartBranch.d" "libraries\source\F2806x_DBGIER.d" "libraries\source\F2806x_DisInt.d" "libraries\source\F2806x_usDelay.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
