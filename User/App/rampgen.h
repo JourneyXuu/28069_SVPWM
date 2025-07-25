@@ -10,17 +10,15 @@ the ramp generation functions contained in RAMPGEN.C
 =====================================================================================
  History:
 -------------------------------------------------------------------------------------
-  07-22-2011	Version 1.00                                                 
+  07-22-2011	Version 1.00
 ------------------------------------------------------------------------------*/
 #ifndef __RAMPGEN_H__
-#define __R
+#define __RAMPGEN_H__
 
 #include "DSP28x_Project.h"
 #include "parameter.h"
 
-
-
-typedef struct {  	
+typedef struct {
 				float	StepAngle;	// Parameter:step angle
 				float	Angle;		// Variable: Step angle
 				float	Sine;  	 	// Output: Ramp signal
@@ -29,23 +27,22 @@ typedef struct {
 				float 	U;
 				float 	T_step;
 	  	  	    void  (*calc)();	  	// Pointer to calculation function
-			} RAMPGEN;	            
+			} RAMPGEN;
 
-typedef RAMPGEN *RAMPGEN_handle;  
 /*------------------------------------------------------------------------------
-      Object Initializers
+    Object Initializers
 ------------------------------------------------------------------------------*/                       
 #define RAMPGEN_DEFAULTS {	2 * PI * BASE_FREQ * T,\
-							0,\
-							0,\
-							0,\
-							0,\
-							0,\
-							1,\
-                         (void (*)(Uint32))rampgen_calc }
+                            0,\
+                            0,\
+                            0,\
+                            0,\
+                            0,\
+                            1,\
+                            (void (*)(Uint32))rampgen_calc }
 /*------------------------------------------------------------------------------
-      Funtion prototypes
+    Funtion prototypes
 ------------------------------------------------------------------------------*/                                               
-void rampgen_calc(RAMPGEN_handle);
+void rampgen_calc(RAMPGEN *v);
 
 #endif // __RAMPGEN_H__

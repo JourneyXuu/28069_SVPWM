@@ -34,7 +34,7 @@ Next, definitions used in main file.
 // Define the ISR frequency (kHz)
 #define ISR_FREQUENCY 5
 
-#define T=0.0005/ISR_FREQUENCY;    //MOSFET switching period
+#define T 0.0005/ISR_FREQUENCY    //MOSFET switching period
 #define BASE_FREQ 50 
 
 

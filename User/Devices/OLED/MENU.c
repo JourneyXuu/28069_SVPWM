@@ -3,6 +3,16 @@
 #include "OLED.h"
 #include "bmp.h"
 Uint8 Menu_Item = 0;  //original menu item
+extern Uint8 RUN_Flag;
+extern Uint8 Stop_Flag;
+extern Uint8 Mode;
+
+extern float Uab_set;
+extern float Ia_set;
+
+extern float Uab_real;
+extern float Vdc_real;
+extern float Ia_real;
 
 void OLED_Display(Uint8 num)
 {
@@ -13,179 +23,93 @@ void OLED_Display(Uint8 num)
 		break;
 		
 		case 1://Primary menu
-			OLED_ShowString(40, 0,  "MENU1", 16,1);  //title
-			OLED_ShowString(20, 16, "Converter", 16,1);
+			OLED_ShowString(40, 0,  "MENU", 16,1);  //title
+			OLED_ShowString(20, 16, "Mode Select", 16,1);
 			OLED_ShowString(20, 16*2, "Monitor", 16,1);
-			OLED_ShowString(20, 16*3, "Task", 16,1);
 			OLED_ShowString(0, 16,  ">>", 16,1);    //index
 		break;
 /*****************************Secondary menu Start************************************/
 		case 10:
-			OLED_ShowString(40, 0, "Converter", 16,1); //title
-			OLED_ShowString(20, 16, "On-Grid", 16,1);
-			OLED_ShowString(20, 16*2, "Off-Grid", 16,1);
-			OLED_ShowString(20, 16*3, "Euler angle", 16,1);
+            OLED_ShowString(20, 0, "Mode Select", 16,1); 
+            OLED_ShowString(20, 16, "Grid-tied", 16,1);
+            OLED_ShowString(20, 16*2, "Off-grid", 16,1);
 			OLED_ShowString(0, 16, ">>", 16,1);
 		break;
 		case 11:
-			OLED_ShowString(40, 0, "Converter", 16,1); //title
-			OLED_ShowString(20, 16, "On-Grid", 16,1);
-			OLED_ShowString(20, 16*2, "Off-Grid", 16,1);
-			OLED_ShowString(20, 16*3, "Euler angle", 16,1);
+            OLED_ShowString(20, 0, "Mode Select", 16,1); 
+            OLED_ShowString(20, 16, "Grid-tied", 16,1);
+            OLED_ShowString(20, 16*2, "Off-grid", 16,1);
 			OLED_ShowString(0, 16*2, ">>", 16,1);
-		break;
-		case 12:
-			OLED_ShowString(40, 0, "Converter", 16,1); //title
-			OLED_ShowString(20, 16, "On-Grid", 16,1);
-			OLED_ShowString(20, 16*2, "Off-Grid", 16,1);
-			OLED_ShowString(20, 16*3, "Euler angle", 16,1);
-			OLED_ShowString(0, 16*3, ">>", 16,1);
 		break;
 /*****************************Secondary menu End************************************/
 
+/*****************************tertiary menu Start************************************/
+		case 110:	//on-grid mode
+            OLED_ShowString(0, 0, "Grid-tied Mode", 16,1);
+            OLED_ShowString(0, 16, "Press KEY2 to", 16,1);
+            OLED_ShowString(20, 16*2, "START/STOP", 16,1);
+            if(RUN_Flag == 1) {
+                OLED_ShowString(20, 16*3, "Status: RUN", 16,0);
+            } else {
+                OLED_ShowString(20, 16*3, "Status: STOP", 16,0);
+            }
+            break;
+		case 111:	//off-grid mode
+            OLED_ShowString(0, 0, "Off-grid Mode", 16,1);
+            OLED_ShowString(0, 16, "Press KEY2 to", 16,1);
+            OLED_ShowString(20, 16*2, "START/STOP", 16,1);
+            if(RUN_Flag == 1) {
+                OLED_ShowString(20, 16*3, "Status: RUN", 16,0);
+            } else {
+                OLED_ShowString(20, 16*3, "Status: STOP", 16,0);
+            }
+		break;	
+/*****************************tertiary menu End************************************/
+
 	
 		case 2:	//Primary menu
-			OLED_ShowString(40, 0,  "MENU", 16,1);
-			OLED_ShowString(20, 16, "MPU6050", 16,1);
-			OLED_ShowString(20, 16*2, "TASK", 16,1);
-			OLED_ShowString(20, 16*3, "TEST", 16,1);
+			OLED_ShowString(40, 0,  "MENU", 16,1);  //title
+			OLED_ShowString(20, 16, "Mode Select", 16,1);
+			OLED_ShowString(20, 16*2, "Monitor", 16,1);
 			OLED_ShowString(0, 16*2,  ">>", 16,1);
 		break;
 
 /*****************************Secondary menu Start************************************/
 		case 20://Secondary menu
-			OLED_ShowString(40, 0,  "TASK", 16,1);
-			OLED_ShowString(20, 16, "TASK1", 16,1);
-			OLED_ShowString(20, 16*2, "TASK2", 16,1);
-			OLED_ShowString(20, 16*3, "TASK3", 16,1);
-			OLED_ShowString(0, 16,  ">>", 16,1);
+			OLED_ShowString(40, 0,  "Monitor", 8,1);
+			OLED_ShowString(0, 8, "Uab_real:",8,1);
+			OLED_ShowString(0, 8*2, "Vdc_real:",8,1);
+			OLED_ShowString(0, 8*3, "Ia_real:",8,1);
+			OLED_ShowFloat(60,8,Uab_real,8,1);
+			OLED_ShowFloat(60,8*2,Vdc_real,8,1);
+			OLED_ShowFloat(60,8*3,Ia_real,8,1);
+
+			OLED_ShowString(20, 8*4, "Uab_set:",8,1);
+			OLED_ShowString(20, 8*5, "Ia_set:",8,1);
+			OLED_ShowFloat(60,8*4,Uab_real,8,1);
+			OLED_ShowFloat(60,8*5,Ia_set,8,1);
+
+			OLED_ShowString(0, 8*4,  ">>", 8,1);
+
 		break;
 		case 21:
-			OLED_ShowString(40, 0,  "TASK", 16,1);
-			OLED_ShowString(20, 16, "TASK1", 16,1);
-			OLED_ShowString(20, 16*2, "TASK2", 16,1);
-			OLED_ShowString(20, 16*3, "TASK3", 16,1);
-			OLED_ShowString(0, 16*2,  ">>", 16,1);
+			OLED_ShowString(40, 0,  "Monitor", 8,1);
+			OLED_ShowString(0, 8, "Uab_real:",8,1);
+			OLED_ShowString(0, 8*2, "Vdc_real:",8,1);
+			OLED_ShowString(0, 8*3, "Ia_real:",8,1);
+			OLED_ShowFloat(60,8,Uab_real,8,1);
+			OLED_ShowFloat(60,8*2,Vdc_real,8,1);
+			OLED_ShowFloat(60,8*3,Ia_real,8,1);
+
+			OLED_ShowString(20, 8*4, "Uab_set:",8,1);
+			OLED_ShowString(20, 8*5, "Ia_set:",8,1);
+			OLED_ShowFloat(60,8*4,Uab_real,8,1);
+			OLED_ShowFloat(60,8*5,Ia_set,8,1);
+
+			OLED_ShowString(0, 8*5,  ">>", 8,1);
 		break;		
-		case 22:
-			OLED_ShowString(40, 0,  "TASK", 16,1);
-			OLED_ShowString(20, 16, "TASK1", 16,1);
-			OLED_ShowString(20, 16*2, "TASK2", 16,1);
-			OLED_ShowString(20, 16*3, "TASK3", 16,1);
-			OLED_ShowString(0, 16*3,  ">>", 16,1);
-		break;	
+
 /*****************************Secondary menu End************************************/
-
-/*****************************tertiary menu Start************************************/
-		case 120:
-			OLED_ShowString(40, 0,  "TASK1", 16,1);
-			OLED_ShowString(20, 16, "To_Be_Set", 16,1);
-		break;	
-		case 121:
-			OLED_ShowString(40, 0,  "TASK2", 16,1);
-			OLED_ShowString(20, 16, "To_Be_Set", 16,1);	
-		break;	
-		case 122:
-			OLED_ShowString(40, 0,  "TASK3", 16,1);
-			OLED_ShowString(20, 16, "To_Be_Set", 16,1);
-		break;	
-		case 123:
-			OLED_ShowString(40, 0,  "TASK ALL", 16,1);
-			OLED_ShowString(20, 16, "To_Be_Set", 16,1);	
-		break;	
-/*****************************tertiary menu End************************************/
-
-		case 3://primary menu	
-			OLED_ShowString(40, 0,  "MENU", 16,1);
-			OLED_ShowString(20, 16, "MPU6050", 16,1);
-			OLED_ShowString(20, 16*2, "TASK", 16,1);
-			OLED_ShowString(20, 16*3, "TEST", 16,1);
-			OLED_ShowString(0, 16*3,  ">>", 16,1);
-		break;
-
-/*****************************Secondary menu Start************************************/
-		case 30: //*TEST.1	
-			OLED_ShowString(40, 0,  "TEST", 16,1);
-			OLED_ShowString(20, 16, "Motor", 8,1);		
-			OLED_ShowString(20, 16+8*1, "ADC", 8,1);
-			OLED_ShowString(20, 16+8*2, "Openmv", 8,1);
-			OLED_ShowString(20, 16+8*3, "Bluetooth", 8,1);		
-			OLED_ShowString(0, 16,  ">>", 8,1);
-		break;				
-		case 31://*TEST.2	
-			OLED_ShowString(40, 0,  "TEST", 16,1);
-			OLED_ShowString(20, 16, "Motor", 8,1);		
-			OLED_ShowString(20, 16+8*1, "ADC", 8,1);
-			OLED_ShowString(20, 16+8*2, "Openmv", 8,1);
-			OLED_ShowString(20, 16+8*3, "Bluetooth", 8,1);
-			OLED_ShowString(0, 16+8*1, ">>", 8,1);
-		break;			
-		case 32://*TEST.3	
-			OLED_ShowString(40, 0,  "TEST", 16,1);
-			OLED_ShowString(20, 16, "Motor", 8,1);		
-			OLED_ShowString(20, 16+8*1, "ADC", 8,1);
-			OLED_ShowString(20, 16+8*2, "Openmv", 8,1);
-			OLED_ShowString(20, 16+8*3, "Bluetooth", 8,1);
-			OLED_ShowString(0, 16+8*2,  ">>", 8,1);
-		break;			
-		case 33://*TEST.4	
-			OLED_ShowString(40, 0,  "TEST", 16,1);
-			OLED_ShowString(20, 16, "Motor", 8,1);		
-			OLED_ShowString(20, 16+8*1,"ADC", 8,1);
-			OLED_ShowString(20, 16+8*2, "Openmv", 8,1);
-			OLED_ShowString(20, 16+8*3, "Bluetooth", 8,1);	
-			OLED_ShowString(0, 16+8*3,  ">>", 8,1);
-		break;
-/*****************************Secondary menu End************************************/
-
-/*****************************tertiary menu Start************************************/
-		case 130:
-			OLED_ShowString(40, 0,  	"TEST 1", 16,1);	
-			OLED_ShowString(20, 16,  	"Nothing here", 8,1);		
-			OLED_ShowString(20, 16+8*1,  "ME"	, 8,1);
-			OLED_ShowString(20, 16+8*2,  "and"	, 8,1);	
-			OLED_ShowString(20, 16+8*3,  "You"	, 8,1);		
-			OLED_ShowString(20, 16+8*4,  "He"	, 8,1);			
-			OLED_ShowString(20, 16+8*5,  "She"	, 8,1);	
-
-		
-		break;
-		case 131:	
-			OLED_ShowString(40, 0,  	"TEST 2", 16,1);	
-			OLED_ShowString(20, 16,  	"Nothing here", 8,1);		
-			OLED_ShowString(20, 16+8*1,  "ME"	, 8,1);
-			OLED_ShowString(20, 16+8*2,  "and"	, 8,1);	
-			OLED_ShowString(20, 16+8*3,  "You"	, 8,1);		
-			OLED_ShowString(20, 16+8*4,  "He"	, 8,1);			
-			OLED_ShowString(20, 16+8*5,  "She"	, 8,1);			
-		break;
-		case 132:
-        	OLED_ShowString(40, 0,  	"TEST 2", 16,1);	
-			OLED_ShowString(20, 16,  	"Nothing here", 8,1);		
-			OLED_ShowString(20, 16+8*1,  "ME"	, 8,1);
-			OLED_ShowString(20, 16+8*2,  "and"	, 8,1);	
-			OLED_ShowString(20, 16+8*3,  "You"	, 8,1);		
-			OLED_ShowString(20, 16+8*4,  "He"	, 8,1);			
-			OLED_ShowString(20, 16+8*5,  "She"	, 8,1);			
-		break;
-		case 133:
-        	OLED_ShowString(40, 0,  	"TEST 2", 16,1);	
-			OLED_ShowString(20, 16,  	"Nothing here", 8,1);		
-			OLED_ShowString(20, 16+8*1,  "ME"	, 8,1);
-			OLED_ShowString(20, 16+8*2,  "and"	, 8,1);	
-			OLED_ShowString(20, 16+8*3,  "You"	, 8,1);		
-			OLED_ShowString(20, 16+8*4,  "He"	, 8,1);			
-			OLED_ShowString(20, 16+8*5,  "She"	, 8,1);			
-		break;		
-		case 134:
-        	OLED_ShowString(40, 0,  	"TEST 2", 16,1);	
-			OLED_ShowString(20, 16,  	"Nothing here", 8,1);		
-			OLED_ShowString(20, 16+8*1,  "ME"	, 8,1);
-			OLED_ShowString(20, 16+8*2,  "and"	, 8,1);	
-			OLED_ShowString(20, 16+8*3,  "You"	, 8,1);		
-			OLED_ShowString(20, 16+8*4,  "He"	, 8,1);			
-			OLED_ShowString(20, 16+8*5,  "She"	, 8,1);			
-        break;	
 	}
 /*****************************tertiary menu End************************************/
 }
@@ -209,41 +133,23 @@ void MENU_Item_KEY(void)
 			Menu_Item++;
                 switch(Menu_Item) // index in a circle
                 {
-                    case 4: 
+                    case 3: 
                         Menu_Item  = 1; 
                     break;
 
-                    case 13:
+                    case 12:
                         Menu_Item = 10;
                     break;
 
-                    case 111:
                     case 112:
-                    case 113:   
-                    Menu_Item--;
+                    	Menu_Item = 110;
                     break;	
                     
-                    case 23:
+                    case 22:
                         Menu_Item = 20;
                     break;
-                    
-                    case 121:
-                    case 122:
-                    case 123: 
-                    case 124:							
-                        Menu_Item--;
-                    break;
-                    
-                    case 34:
-                        Menu_Item = 30;
-                    break;
-                    
-                    case 131:
-                    case 132:
-                    case 133:
-                    case 134:							
-                        Menu_Item--;
-                    break;
+					default:
+					break;
                 }	
 				break;
 				
@@ -253,30 +159,34 @@ void MENU_Item_KEY(void)
             {
                 case 1: 
                 case 2:
-                case 3:
                     Menu_Item *= 10;   
                 break;
                 
                 case 10:      
                 case 11:	
-                case 12:
                     Menu_Item  += 100;   
                 break;
                 
                 case 20:      
                 case 21:	
-                case 22:
-                case 23:
                     Menu_Item  += 100;   
                 break;
-                
-                case 30:      
-                case 31:	
-                case 32:
-                case 33:
-                    Menu_Item  += 100;   
-                break;
-            }					
+
+				case 110:
+				case 111:
+					if(RUN_Flag == 0) {
+						RUN_Flag = 1;
+						Stop_Flag = 0;
+					} else {
+						RUN_Flag = 0;
+						Stop_Flag = 1;
+					}
+				break;
+				default:
+				break;
+            }	
+
+
         break;
             
         case KEY3_PRES :              //home
@@ -284,14 +194,48 @@ void MENU_Item_KEY(void)
             Menu_Item = 0;    
         break;
 
-        // case KEY4_PRES: 
-        // break;
+        case KEY4_PRES:  //Stop Imediately
+			OLED_Clear();
+			RUN_Flag = 0 ;
+			Stop_Flag = 1;
 
-        // case KEY5_PRES:
-        // break;
+        break;
 
-        // case KEY6_PRES:
-        // break;
+        case KEY5_PRES:	//parameter add
+			OLED_Clear();
+			switch (Menu_Item)
+			{
+			case 20:
+				Uab_set += 0.1;
+			break;
+			case 21:
+				Ia_set += 0.1;
+			break;
+			default:
+			break;
+			}
+
+
+        break;
+
+        case KEY6_PRES: //parameter sub
+			OLED_Clear();
+			switch (Menu_Item)
+			{
+			case 20:
+				Uab_set -= 0.1;
+			break;
+			case 21:
+				Ia_set -= 0.1;
+			break;
+			default:
+			break;
+			}
+
+
+
+
+        break;
 	}
 
 

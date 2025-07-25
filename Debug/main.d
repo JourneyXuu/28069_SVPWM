@@ -35,10 +35,25 @@ main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/libraries/include/F280
 main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/libraries/include/F2806x_Cla_defines.h
 main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/libraries/include/F2806x_DefaultISR.h
 main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/F2806x_MemCopy.h
+main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/App/hardware_config.h
 main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Devices/OLED/OLED.h
 main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Devices/IIC/IIC.h
 main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/bsp_key.h
 main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Devices/OLED/MENU.h
+main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/App/user_svpwm_2l.h
+main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/App/rampgen.h
+main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/App/parameter.h
+main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Algorithm/user_all_h_data.h
+main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Algorithm/user_matrix_transform.h
+main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/math.h
+main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/_ti_config.h
+main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/linkage.h
+main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/_defs.h
+main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/sys/_types.h
+main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/sys/cdefs.h
+main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/machine/_types.h
+main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/machine/_limits.h
+main.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/epwm.h
 
 ../main.c:
 
@@ -110,6 +125,8 @@ D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/libraries/include/F2806x_Default
 
 D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/F2806x_MemCopy.h:
 
+D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/App/hardware_config.h:
+
 D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Devices/OLED/OLED.h:
 
 D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Devices/IIC/IIC.h:
@@ -117,4 +134,32 @@ D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Devices/IIC/IIC.h:
 D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/bsp_key.h:
 
 D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Devices/OLED/MENU.h:
+
+D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/App/user_svpwm_2l.h:
+
+D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/App/rampgen.h:
+
+D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/App/parameter.h:
+
+D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Algorithm/user_all_h_data.h:
+
+D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Algorithm/user_matrix_transform.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/math.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/_ti_config.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/linkage.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/_defs.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/sys/_types.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/sys/cdefs.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/machine/_types.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/machine/_limits.h:
+
+D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/epwm.h:
 

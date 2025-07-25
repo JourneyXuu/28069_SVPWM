@@ -8,6 +8,12 @@
         "parameter.h": "c",
         "user_svpwm_2l.h": "c",
         "rampgen.h": "c",
-        "user_all_h_data.h": "c"
+        "user_all_h_data.h": "c",
+        "oled.h": "c",
+        "compare": "c",
+        "limits": "c",
+        "cmath": "c",
+        "type_traits": "c",
+        "menu.h": "c"
     }
 }

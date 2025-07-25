@@ -12,7 +12,7 @@ typedef struct  {
                 float Ualpha;     //输入
 				float Ubeta;      //输入
 				float Udc;        //直流侧电压输入
-				float T;          //调制周期输入
+				float T1;          //调制周期输入
 				float Tcmpa;      //A相调制波比较时刻值
 				float Tcmpb;      //B相调制波比较时刻值
 				float Tcmpc;      //C相调制波比较时刻值
@@ -26,14 +26,14 @@ typedef SVPWM_2L *SVPWM_2L_handle;
 //定义算法计算过程中的初始值
 
 
-#define SVPWM_2L_DEFAULTS {0,  \
-                        0,  \
-                        0,  \
-                        0.00005,\
-                        0.0,\
-                        0.0,\
-                        0.0,\
-						(void(*) (Uint32))svpwm_2l_calc}
+#define SVPWM_2L_DEFAULTS { 0,  \
+                            0,  \
+                            20,  \
+                            0,\
+                            0.0,\
+                            0.0,\
+                            0.0,\
+                            (void(*) (Uint32))svpwm_2l_calc}
 
 
 //函数声明

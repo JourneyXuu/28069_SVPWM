@@ -38,6 +38,8 @@ User/App/hardware_config.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/li
 User/App/hardware_config.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/gpio.h
 User/App/hardware_config.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/epwm.h
 User/App/hardware_config.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/adc.h
+User/App/hardware_config.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Devices/OLED/oled.h
+User/App/hardware_config.obj: D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Devices/IIC/IIC.h
 
 ../User/App/hardware_config.c:
 
@@ -114,4 +116,8 @@ D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/gpio.h:
 D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/epwm.h:
 
 D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/bsp/adc.h:
+
+D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Devices/OLED/oled.h:
+
+D:/A_Project/DSP_Project/workspace_v12/04_SVPWM/User/Devices/IIC/IIC.h:
 

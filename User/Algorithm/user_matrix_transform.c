@@ -1,5 +1,4 @@
 #include "user_matrix_transform.h"
-#include "user_all_h_data.h"
 
 /*
  *@biref: abc -> alpha beta
@@ -31,15 +30,16 @@ void Park_Marco(type_default *v)
 
 /*
  *@brief: D Q -> alpha beta
+        or D Q -> abc
 */
 void IPark_Marco(type_default *v)
 {
-    v->Alpha = (v->Ds * v->Cosine - v->Qs * v->Sine);
-    v->Beta  = (v->Qs * v->Cosine + v->Ds * v->Sine);
+    // v->Alpha = (v->Ds * v->Cosine - v->Qs * v->Sine);
+    // v->Beta  = (v->Qs * v->Cosine + v->Ds * v->Sine);
 
-    // v->As = v->Alpha;
-    // v->Bs = 0.866 * v->Beta - 0.5 * v->Alpha;
-    // v->Cs = -0.5 * v->Alpha - 0.866 * v->Beta;
+    v->As = v->Alpha;
+    v->Bs = 0.866 * v->Beta - 0.5 * v->Alpha;
+    v->Cs = -0.5 * v->Alpha - 0.866 * v->Beta;
 }
 
 

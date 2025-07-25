@@ -44,9 +44,9 @@ Uint8 Key_Scan(void)
     if (key1_flag[0]==0 && key1_flag[1]==0 && key1_flag[2]==1 && key1_flag[3]==1) return 1;
     else if (key2_flag[0]==0 && key2_flag[1]==0 && key2_flag[2]==1 && key2_flag[3]==1) return 2;
     else if (key3_flag[0]==0 && key3_flag[1]==0 && key3_flag[2]==1 && key3_flag[3]==1) return 3;
-    else if (key4_flag[0]==0 && key4_flag[1]==0 && key4_flag[2]==1 && key4_flag[3]==1) return 3;
-    else if (key5_flag[0]==0 && key5_flag[1]==0 && key5_flag[2]==1 && key5_flag[3]==1) return 3;
-    else if (key6_flag[0]==0 && key6_flag[1]==0 && key6_flag[2]==1 && key6_flag[3]==1) return 3;
+    else if (key4_flag[0]==0 && key4_flag[1]==0 && key4_flag[2]==1 && key4_flag[3]==1) return 4;
+    else if (key5_flag[0]==0 && key5_flag[1]==0 && key5_flag[2]==1 && key5_flag[3]==1) return 5;
+    else if (key6_flag[0]==0 && key6_flag[1]==0 && key6_flag[2]==1 && key6_flag[3]==1) return 6;
     else return 0;
 
 }

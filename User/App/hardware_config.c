@@ -2,13 +2,22 @@
 #include "gpio.h"
 #include "epwm.h"
 #include "adc.h"
-
+#include "oled.h"
 void Hardware_Config(void)
 {
     GPIO_Init();
     Master_EPWM_Init();        //EPWM1
     Slave_EPWM_Init(&EPwm2Regs);//EPWM2
     Slave_EPWM_Init(&EPwm3Regs);//EPWM3 
+
+    OLED_Init();
+    OLED_Refresh();
+    OLED_Clear();
+    //    OLED_ShowString(0,0,"Uab:",16,1);
+    //    OLED_ShowString(0,16,"Udc:",16,1);
+    //    OLED_ShowString(0,32,"Iab:",16,1);
+    OLED_Refresh();
+    DELAY_US(1);
 
     ADC_Trig_Init();
     ADC_Init();
