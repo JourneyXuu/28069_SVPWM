@@ -287,9 +287,6 @@ u8 get_int_length(u8 num)
     else return 3;
 }
 
-
-
-
 void OLED_ShowFloat(u8 x, u8 y, float Fnum, u8 size1, u8 mode)
 {
     u32 scaled_num;     

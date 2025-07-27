@@ -85,9 +85,9 @@ void OLED_Display(Uint8 num)
 			OLED_ShowString(20, 16*2, "Vdc:",16,1);
 			OLED_ShowString(20, 16*3, "Ia:",16,1);
 
-			// OLED_ShowFloat(50,16,Uab_real,16,1);
-			// OLED_ShowFloat(50,16*2,Vdc_real,16,1);
-			// OLED_ShowFloat(50,16*3,Ia_real,16,1);
+			OLED_ShowFloat(50,16,Uab_real,16,1);
+			OLED_ShowFloat(50,16*2,Vdc_real,16,1);
+			OLED_ShowFloat(50,16*3,Ia_real,16,1);
 
 			OLED_ShowFloat(90,16,Uab_set,16,1);
 			OLED_ShowFloat(90,16*3,Ia_set,16,1);
