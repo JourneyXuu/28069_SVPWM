@@ -38,6 +38,8 @@ typedef SVPWM_2L *SVPWM_2L_handle;
 
 //函数声明
 void svpwm_2l_calc(SVPWM_2L_handle);
+void svgendq_calc(SVPWM_2L *v);
+
 #endif
 //////////////////////////////////
 //End of file

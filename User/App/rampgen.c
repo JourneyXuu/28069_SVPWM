@@ -27,12 +27,12 @@ void rampgen_calc(RAMPGEN *v)
 // Compute the angle rate
     v->Angle += v->StepAngle;;    // v->Angle += v->StepAngleMax;   (v->Angle > (2 * PI))
     if  (v->Angle > (2 * PI))
-            v->Angle = 0;
+            v->Angle -= (2 * PI);
     
     if(v->U > v->Umax)  { v->U = v->Umax;  }
     else
     {
-        v->U += v->Umax * v->T_step; 
+        v->U += v->Umax * 0.0002 * v->T_step;
     }
 // Compute the ramp output
         v->Sine = v->U * sin(v->Angle);
