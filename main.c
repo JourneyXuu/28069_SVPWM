@@ -99,8 +99,8 @@ void main()
     rampgen_vs.StepAngle =  2 * PI * BASE_FREQ * T;
 
 
-    svpwm_2l.T1 = 0.0001; //调制周期
-    svpwm_2l.Udc = 1.5;
+    svpwm_2l.T1 = 1; //调制周期
+    svpwm_2l.Udc = 1;
 /************02.Private Structure Init End*****************/
 
 
@@ -177,6 +177,7 @@ interrupt void Adc_ISR(void)
         svpwm_2l.Udc = udc;
         // svpwm_2l_calc(&svpwm_2l);
         svgendq_calc(&svpwm_2l);
+        // my_svpwm_2l_calc(&svpwm_2l);
         svpwm_ua = svpwm_2l.Tcmpa * (EPWM1_TBPRD-1);
         svpwm_ub = svpwm_2l.Tcmpb * (EPWM1_TBPRD-1);
         svpwm_uc = svpwm_2l.Tcmpc * (EPWM1_TBPRD-1);
@@ -206,9 +207,9 @@ interrupt void Adc_ISR(void)
 
         if(Watch_count > 199) {Watch_count -= 200;}
         else {Watch_count++;}
-        temp1[Watch_count] = svpwm_ua;//svpwm_2l.Ualpha//
-        temp2[Watch_count] = svpwm_ub;////svpwm_2l.Ubeta
-        temp3[Watch_count] = svpwm_uc;////svpwm_2l.Tcmpc
+        temp1[Watch_count] = svpwm_2l.Tcmpa;//svpwm_2l.Ualpha////svpwm_ua
+        temp2[Watch_count] = svpwm_2l.Tcmpb;//svpwm_ub//svpwm_2l.Ubeta////
+        temp3[Watch_count] = svpwm_2l.Tcmpc;//svpwm_uc////
 
 
         // Clarke_Marco(&grid_voltage);

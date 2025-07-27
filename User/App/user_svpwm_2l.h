@@ -28,7 +28,7 @@ typedef SVPWM_2L *SVPWM_2L_handle;
 
 #define SVPWM_2L_DEFAULTS { 0,  \
                             0,  \
-                            20,  \
+                            0,  \
                             0,\
                             0.0,\
                             0.0,\
@@ -39,6 +39,7 @@ typedef SVPWM_2L *SVPWM_2L_handle;
 //函数声明
 void svpwm_2l_calc(SVPWM_2L_handle);
 void svgendq_calc(SVPWM_2L *v);
+void my_svpwm_2l_calc(SVPWM_2L *v);
 
 #endif
 //////////////////////////////////

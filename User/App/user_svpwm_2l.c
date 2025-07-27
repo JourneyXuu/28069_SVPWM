@@ -60,12 +60,12 @@ void svpwm_2l_calc(SVPWM_2L *p)
           default:{;}
           }
  //对过调制进行调整,标准化
-          if((t1+t2)>p->T1)
-          {
-          temp=t1+t2;
-          t1=t1*p->T1/temp;
-          t2=t2*p->T1/temp;
-          }
+          // if((t1+t2)>p->T1)
+          // {
+          // temp=t1+t2;
+          // t1=t1*p->T1/temp;
+          // t2=t2*p->T1/temp;
+          // }
      //作用时间分配
           Ta=0.25*(p->T1-t1-t2);
           Tb=Ta+0.5*t1;
@@ -104,7 +104,7 @@ void svgendq_calc(SVPWM_2L *v)
           Sector = Sector + 4;
           
 // X,Y,Z (Va,Vb,Vc) calculations
-     Va = v->Ubeta;                                                       // X = Va 
+     Va = v->Ubeta * 0.8660254;                                                       // X = Va 
      Vb = 0.5f * v->Ubeta + 0.8660254f * v->Ualpha;   // Y = Vb 
      Vc = 0.5f * v->Ubeta - 0.8660254f * v->Ualpha;   // Z = Vc
 
@@ -165,34 +165,99 @@ void svgendq_calc(SVPWM_2L *v)
           
 }
 
+/*
+ *@breif: 
+ *@note: use per-unit value to calculate
+ */
+void my_svpwm_2l_calc(SVPWM_2L *v)
+{
+     float T1,T2,T0;
+     float X,Y,Z;
+     Uint8 A,B,C,N,Sector;
+     float K=1.73205081;      //sqrt(3)/2=1.73205081
 
+     if(v->Ubeta > 0) A=1;
+     else A=0;
+     if((K*v->Ualpha - v->Ubeta) > 0) B=1;
+     else B=0;
+     if((-K*v->Ualpha - v->Ubeta) > 0) C=1;
+     else C=0;
 
+     N = A + 2*B + 4*C;
+     switch(N)
+     {
+          case 1: Sector = 2; break;
+          case 2: Sector = 6; break;
+          case 3: Sector = 1; break;
+          case 4: Sector = 4; break;
+          case 5: Sector = 3; break;
+          case 6: Sector = 5; break;
+          default: Sector = 0; break;
+     }
+     // X = (K * v->Ubeta) / v->Udc ;
+     // Y = (K * v->Ubeta + 3 * v->Ualpha )/(2 * v->Udc );
+     // Z = (K * v->Ubeta - 3 * v->Ualpha )/(2 * v->Udc );
+     X = (v->Ubeta) / v->Udc ;
+     Y = ( v->Ubeta + K * v->Ualpha )/(2 * v->Udc );
+     Z = ( v->Ubeta - K * v->Ualpha )/(2 * v->Udc );
+     switch(Sector)
+     {
+          case 1:   T1 = -Z; T2 =  X; break;
+          case 2:   T1 =  Z; T2 =  Y; break;
+          case 3:   T1 =  X; T2 = -Y; break;
+          case 4:   T1 = -X; T2 =  Z; break;
+          case 5:   T1 = -Y; T2 = -Z; break;
+          case 6:   T1 =  Y; T2 = -X; break;
+          default:  T1 =  0; T2 =  0; break;
+     }
+     // Three phase mode (all three phases change states)
+     //(two zero vectors)
+     // T0 = 0.25 * (1 - T1 - T2);         //   T0 / 4
+     // T1 = 0.5 * T1;                     //   T1 / 2
+     // T2 = 0.5 * T2;                     //   T2 / 2
 
+     T0 = 0.5 * (1 - T1 - T2);         //   T0 / 4
+     T1 = T1;                     //   T1 / 2
+     T2 = T2;                     //   T2 / 2
+     switch(Sector)
+     {
+          case 0:
+          v->Tcmpa =  0.5f;
+          v->Tcmpb =  0.5f;
+          v->Tcmpc =  0.5f;
+          break;
+          case 1:
+          v->Tcmpa = T0;
+          v->Tcmpb = T0 + T1;
+          v->Tcmpc = T0 + T1 + T2;
+          break;
+          case 2:
+          v->Tcmpa = T0 + T1;
+          v->Tcmpb = T0 ;
+          v->Tcmpc = T0 + T1 + T2;
+          break;
+          case 3:
+          v->Tcmpa = T0 + T1 + T2;
+          v->Tcmpb = T0 ;
+          v->Tcmpc = T0 + T1;
+          break;
+          case 4:
+          v->Tcmpa = T0 + T1 + T2;
+          v->Tcmpb = T0 + T1;
+          v->Tcmpc = T0;
+          break;
+          case 5:
+          v->Tcmpa = T0 + T1;
+          v->Tcmpb = T0 + T1 + T2;
+          v->Tcmpc = T0;
+          break;
+          case 6:
+          v->Tcmpa = T0;
+          v->Tcmpb = T0 + T1 + T2;
+          v->Tcmpc = T0 + T1;
+          break;
 
+     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 //End of file
