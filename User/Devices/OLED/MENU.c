@@ -2,7 +2,7 @@
 #include "bsp_key.h"
 #include "OLED.h"
 #include "bmp.h"
-Uint8 Menu_Item = 0;  //original menu item
+Uint8 Menu_Item = 20;  //original menu item
 extern Uint8 RUN_Flag;
 extern Uint8 Stop_Flag;
 extern Uint8 Mode;
@@ -77,36 +77,42 @@ void OLED_Display(Uint8 num)
 /*****************************Secondary menu Start************************************/
 		case 20://Secondary menu
 			OLED_ShowString(40, 0,  "Monitor", 8,1);
-			OLED_ShowString(0, 8, "Uab_real:",8,1);
-			OLED_ShowString(0, 8*2, "Vdc_real:",8,1);
-			OLED_ShowString(0, 8*3, "Ia_real:",8,1);
-			OLED_ShowFloat(60,8,Uab_real,8,1);
-			OLED_ShowFloat(60,8*2,Vdc_real,8,1);
-			OLED_ShowFloat(60,8*3,Ia_real,8,1);
+			
+			OLED_ShowString(20, 8, "Real",8,1);
+			OLED_ShowString(90, 8, "Set",8,1);
 
-			OLED_ShowString(20, 8*4, "Uab_set:",8,1);
-			OLED_ShowString(20, 8*5, "Ia_set:",8,1);
-			OLED_ShowFloat(60,8*4,Uab_real,8,1);
-			OLED_ShowFloat(60,8*5,Ia_set,8,1);
+			OLED_ShowString(20, 16, "Uab:",16,1);
+			OLED_ShowString(20, 16*2, "Vdc:",16,1);
+			OLED_ShowString(20, 16*3, "Ia:",16,1);
 
-			OLED_ShowString(0, 8*4,  ">>", 8,1);
+			// OLED_ShowFloat(50,16,Uab_real,16,1);
+			// OLED_ShowFloat(50,16*2,Vdc_real,16,1);
+			// OLED_ShowFloat(50,16*3,Ia_real,16,1);
+
+			OLED_ShowFloat(90,16,Uab_set,16,1);
+			OLED_ShowFloat(90,16*3,Ia_set,16,1);
+
+			OLED_ShowString(0, 16*1,  ">>", 16,1);
 
 		break;
 		case 21:
 			OLED_ShowString(40, 0,  "Monitor", 8,1);
-			OLED_ShowString(0, 8, "Uab_real:",8,1);
-			OLED_ShowString(0, 8*2, "Vdc_real:",8,1);
-			OLED_ShowString(0, 8*3, "Ia_real:",8,1);
-			OLED_ShowFloat(60,8,Uab_real,8,1);
-			OLED_ShowFloat(60,8*2,Vdc_real,8,1);
-			OLED_ShowFloat(60,8*3,Ia_real,8,1);
+			
+			OLED_ShowString(20, 8, "Real",8,1);
+			OLED_ShowString(90, 8, "Set",8,1);
 
-			OLED_ShowString(20, 8*4, "Uab_set:",8,1);
-			OLED_ShowString(20, 8*5, "Ia_set:",8,1);
-			OLED_ShowFloat(60,8*4,Uab_real,8,1);
-			OLED_ShowFloat(60,8*5,Ia_set,8,1);
+			OLED_ShowString(20, 16, "Uab:",16,1);
+			OLED_ShowString(20, 16*2, "Vdc:",16,1);
+			OLED_ShowString(20, 16*3, "Ia:",16,1);
 
-			OLED_ShowString(0, 8*5,  ">>", 8,1);
+			OLED_ShowFloat(50,16,Uab_real,16,1);
+			OLED_ShowFloat(50,16*2,Vdc_real,16,1);
+			OLED_ShowFloat(50,16*3,Ia_real,16,1);
+
+			OLED_ShowFloat(90,16,Uab_set,16,1);
+			OLED_ShowFloat(90,16*3,Ia_set,16,1);
+
+			OLED_ShowString(0, 16*3,  ">>", 16,1);
 		break;		
 
 /*****************************Secondary menu End************************************/
@@ -167,10 +173,10 @@ void MENU_Item_KEY(void)
                     Menu_Item  += 100;   
                 break;
                 
-                case 20:      
-                case 21:	
-                    Menu_Item  += 100;   
-                break;
+                // case 20:      
+                // case 21:	
+                //     Menu_Item  += 100;   
+                // break;
 
 				case 110:
 				case 111:

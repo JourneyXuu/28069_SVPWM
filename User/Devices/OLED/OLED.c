@@ -270,9 +270,14 @@ void OLED_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 size1,u8 mode)
 
 void my_itoa(u8 num, char *buffer)
 {
-    buffer[0] = (num / 10) + '0';
-    buffer[1] = (num % 10) + '0';
-    buffer[2] = '\0';  
+	if (num >= 10) {
+        buffer[0] = (num / 10) + '0';
+        buffer[1] = (num % 10) + '0';
+        buffer[2] = '\0';
+    } else {
+        buffer[0] = num + '0';
+        buffer[1] = '\0';
+    }
 }
 
 u8 get_int_length(u8 num)
@@ -282,12 +287,16 @@ u8 get_int_length(u8 num)
     else return 3;
 }
 
+
+
+
 void OLED_ShowFloat(u8 x, u8 y, float Fnum, u8 size1, u8 mode)
 {
     u32 scaled_num;     
     u8 sign_offset = 0; 
     u8 int_part;        
-    u8 dec_part;        
+    u8 dec_part;    
+    char int_buffer[4];
 
     if (Fnum < 0) {
         OLED_ShowString(x, y, (u8 *)"-", size1, mode);  
@@ -296,10 +305,9 @@ void OLED_ShowFloat(u8 x, u8 y, float Fnum, u8 size1, u8 mode)
     }
 
     scaled_num = (u32)(Fnum * 100.0f + 0.5f);
-    int_part = scaled_num / 100;
+    int_part = scaled_num / 100.0;
     dec_part = scaled_num % 100;
 
-    char int_buffer[4];
     my_itoa(int_part, int_buffer);
     OLED_ShowString(x + sign_offset, y, (u8 *)int_buffer, size1, mode);
 

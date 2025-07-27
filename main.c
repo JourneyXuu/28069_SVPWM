@@ -33,12 +33,12 @@
     float svpwm_uc = 0;
     float udc = 1.0;
 
-    float Uab_set = 0;
-    float Ia_set = 0;
+    float Uab_set = 0.00;
+    float Ia_set = 0.00;
     
-    float Uab_real = 0;
-    float Vdc_real = 0;
-    float Ia_real = 0;
+    float Uab_real = 0.00;
+    float Vdc_real = 0.00;
+    float Ia_real = 0.00;
 
     Uint16 Watch_count = 0;
 

@@ -104,7 +104,7 @@ void svgendq_calc(SVPWM_2L *v)
           Sector = Sector + 4;
           
 // X,Y,Z (Va,Vb,Vc) calculations
-     Va = v->Ubeta * 0.8660254;                                                       // X = Va 
+     Va = v->Ubeta;                                                       // X = Va 
      Vb = 0.5f * v->Ubeta + 0.8660254f * v->Ualpha;   // Y = Vb 
      Vc = 0.5f * v->Ubeta - 0.8660254f * v->Ualpha;   // Z = Vc
 
