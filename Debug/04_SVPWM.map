@@ -1,10 +1,10 @@
 ******************************************************************************
              TMS320C2000 Linker PC v22.6.1                     
 ******************************************************************************
->> Linked Mon Jul 28 10:28:22 2025
+>> Linked Mon Jul 28 21:58:57 2025
 
 OUTPUT FILE NAME:   <04_SVPWM.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 003f58f3
+ENTRY POINT SYMBOL: "_c_int00"  address: 003f58ef
 
 
 MEMORY CONFIGURATION
@@ -21,7 +21,7 @@ PAGE 0:
   FLASHE                003e4000   00004000  00000000  00004000  RWIX
   FLASHD                003e8000   00004000  000000ee  00003f12  RWIX
   FLASHC                003ec000   00004000  00001e72  0000218e  RWIX
-  FLASHA                003f4000   00003f80  00001d97  000021e9  RWIX
+  FLASHA                003f4000   00003f80  00001d93  000021ed  RWIX
   CSM_RSVD              003f7f80   00000076  00000000  00000076  RWIX
   BEGIN                 003f7ff6   00000002  00000002  00000000  RWIX
   CSM_PWL_P0            003f7ff8   00000008  00000000  00000008  RWIX
@@ -106,25 +106,25 @@ SECTION ALLOCATION MAP
  output                                  attributes/
 section   page    origin      length       input sections
 --------  ----  ----------  ----------   ----------------
-.cinit     0    003f5abf    000002d8     
-                  003f5abf    00000203     MENU.obj (.cinit:_gImage_CUMT)
-                  003f5cc2    00000082     main.obj (.cinit)
-                  003f5d44    0000000e     rts2800_fpu32.lib : exit.c.obj (.cinit)
-                  003f5d52    0000000a     epwm.obj (.cinit)
-                  003f5d5c    00000005     rts2800_fpu32.lib : _lock.c.obj (.cinit:__lock)
-                  003f5d61    00000005                       : _lock.c.obj (.cinit:__unlock)
-                  003f5d66    00000005     main.obj (.cinit:_temp1)
-                  003f5d6b    00000005     main.obj (.cinit:_temp2)
-                  003f5d70    00000005     main.obj (.cinit:_temp3)
-                  003f5d75    00000004     MENU.obj (.cinit)
-                  003f5d79    00000004     bsp_key.obj (.cinit:_key1_flag)
-                  003f5d7d    00000004     bsp_key.obj (.cinit:_key2_flag)
-                  003f5d81    00000004     bsp_key.obj (.cinit:_key3_flag)
-                  003f5d85    00000004     bsp_key.obj (.cinit:_key4_flag)
-                  003f5d89    00000004     bsp_key.obj (.cinit:_key5_flag)
-                  003f5d8d    00000004     bsp_key.obj (.cinit:_key6_flag)
-                  003f5d91    00000004     bsp_key.obj (.cinit)
-                  003f5d95    00000002     --HOLE-- [fill = 0]
+.cinit     0    003f5abb    000002d8     
+                  003f5abb    00000203     MENU.obj (.cinit:_gImage_CUMT)
+                  003f5cbe    00000082     main.obj (.cinit)
+                  003f5d40    0000000e     rts2800_fpu32.lib : exit.c.obj (.cinit)
+                  003f5d4e    0000000a     epwm.obj (.cinit)
+                  003f5d58    00000005     rts2800_fpu32.lib : _lock.c.obj (.cinit:__lock)
+                  003f5d5d    00000005                       : _lock.c.obj (.cinit:__unlock)
+                  003f5d62    00000005     main.obj (.cinit:_temp1)
+                  003f5d67    00000005     main.obj (.cinit:_temp2)
+                  003f5d6c    00000005     main.obj (.cinit:_temp3)
+                  003f5d71    00000004     MENU.obj (.cinit)
+                  003f5d75    00000004     bsp_key.obj (.cinit:_key1_flag)
+                  003f5d79    00000004     bsp_key.obj (.cinit:_key2_flag)
+                  003f5d7d    00000004     bsp_key.obj (.cinit:_key3_flag)
+                  003f5d81    00000004     bsp_key.obj (.cinit:_key4_flag)
+                  003f5d85    00000004     bsp_key.obj (.cinit:_key5_flag)
+                  003f5d89    00000004     bsp_key.obj (.cinit:_key6_flag)
+                  003f5d8d    00000004     bsp_key.obj (.cinit)
+                  003f5d91    00000002     --HOLE-- [fill = 0]
 
 .pinit     0    003f4000    00000000     UNINITIALIZED
 
@@ -133,7 +133,7 @@ ramfuncs   0    003e8000    000000ee     RUN ADDR = 00008000
                   003e80cf    0000001b     F2806x_SysCtrl.obj (ramfuncs)
                   003e80ea    00000004     F2806x_usDelay.obj (ramfuncs)
 
-.text      0    003f4000    00001abf     
+.text      0    003f4000    00001abb     
                   003f4000    00000546     user_svpwm_2l.obj (.text)
                   003f4546    00000530     OLED.obj (.text)
                   003f4a76    0000039b     F2806x_DefaultIsr.obj (.text:retain)
@@ -145,26 +145,26 @@ ramfuncs   0    003e8000    000000ee     RUN ADDR = 00008000
                   003f5606    000000b6     bsp_key.obj (.text)
                   003f56bc    00000088     rts2800_fpu32.lib : fs_div28.asm.obj (.text)
                   003f5744    00000075     rampgen.obj (.text)
-                  003f57b9    00000071     main.obj (.text)
-                  003f582a    00000066     rts2800_fpu32.lib : s_sinf.c.obj (.text)
-                  003f5890    00000063                       : s_cosf.c.obj (.text)
-                  003f58f3    00000056                       : boot28.asm.obj (.text)
-                  003f5949    0000003b     IIC.obj (.text)
-                  003f5984    00000035     hardware_config.obj (.text)
-                  003f59b9    00000029     rts2800_fpu32.lib : exit.c.obj (.text)
-                  003f59e2    00000028     F2806x_PieCtrl.obj (.text)
-                  003f5a0a    00000026     F2806x_PieVect.obj (.text)
-                  003f5a30    00000024     rts2800_fpu32.lib : cpy_tbl.c.obj (.text)
-                  003f5a54    0000001d                       : memcpy.c.obj (.text)
-                  003f5a71    00000013     F2806x_MemCopy.obj (.text)
-                  003f5a84    00000012     rts2800_fpu32.lib : args_main.c.obj (.text)
-                  003f5a96    0000000b                       : u_div28.asm.obj (.text)
-                  003f5aa1    00000009                       : _lock.c.obj (.text)
-                  003f5aaa    00000008     F2806x_CodeStartBranch.obj (.text)
-                  003f5ab2    00000007     F2806x_DisInt.obj (.text)
-                  003f5ab9    00000003     F2806x_DBGIER.obj (.text)
-                  003f5abc    00000002     rts2800_fpu32.lib : pre_init.c.obj (.text)
-                  003f5abe    00000001                       : startup.c.obj (.text)
+                  003f57b9    0000006d     main.obj (.text)
+                  003f5826    00000066     rts2800_fpu32.lib : s_sinf.c.obj (.text)
+                  003f588c    00000063                       : s_cosf.c.obj (.text)
+                  003f58ef    00000056                       : boot28.asm.obj (.text)
+                  003f5945    0000003b     IIC.obj (.text)
+                  003f5980    00000035     hardware_config.obj (.text)
+                  003f59b5    00000029     rts2800_fpu32.lib : exit.c.obj (.text)
+                  003f59de    00000028     F2806x_PieCtrl.obj (.text)
+                  003f5a06    00000026     F2806x_PieVect.obj (.text)
+                  003f5a2c    00000024     rts2800_fpu32.lib : cpy_tbl.c.obj (.text)
+                  003f5a50    0000001d                       : memcpy.c.obj (.text)
+                  003f5a6d    00000013     F2806x_MemCopy.obj (.text)
+                  003f5a80    00000012     rts2800_fpu32.lib : args_main.c.obj (.text)
+                  003f5a92    0000000b                       : u_div28.asm.obj (.text)
+                  003f5a9d    00000009                       : _lock.c.obj (.text)
+                  003f5aa6    00000008     F2806x_CodeStartBranch.obj (.text)
+                  003f5aae    00000007     F2806x_DisInt.obj (.text)
+                  003f5ab5    00000003     F2806x_DBGIER.obj (.text)
+                  003f5ab8    00000002     rts2800_fpu32.lib : pre_init.c.obj (.text)
+                  003f5aba    00000001                       : startup.c.obj (.text)
 
 codestart 
 *          0    003f7ff6    00000002     
@@ -448,9 +448,9 @@ MODULE SUMMARY
        Module                          code   initialized data   uninitialized data
        ------                          ----   ----------------   ------------------
     .\
-       main.obj                        527    145                1282              
+       main.obj                        523    145                1282              
     +--+-------------------------------+------+------------------+--------------------+
-       Total:                          527    145                1282              
+       Total:                          523    145                1282              
                                                                                    
     .\User\App\
        user_svpwm_2l.obj               1350   0                  0                 
@@ -511,7 +511,7 @@ MODULE SUMMARY
                                                                                    
        Stack:                          0      0                  768               
     +--+-------------------------------+------+------------------+--------------------+
-       Grand Total:                    7325   8520               7334              
+       Grand Total:                    7321   8520               7334              
 
 
 GLOBAL DATA SYMBOLS: SORTED BY DATA PAGE
@@ -693,10 +693,10 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 page  address   name                            
 ----  -------   ----                            
 0     003f4000  .text                           
-0     003f59b9  C$$EXIT                         
+0     003f59b5  C$$EXIT                         
 0     003f56bc  FS$$DIV                         
-0     003f5a96  U$$DIV                          
-0     003f5a9b  U$$MOD                          
+0     003f5a92  U$$DIV                          
+0     003f5a97  U$$MOD                          
 0     003f4b34  _ADCINT1_ISR                    
 0     003f4b3e  _ADCINT2_ISR                    
 0     003f4d46  _ADCINT3_ISR                    
@@ -741,8 +741,8 @@ page  address   name
 0     003f4cd8  _DINTCH4_ISR                    
 0     003f4ce2  _DINTCH5_ISR                    
 0     003f4cec  _DINTCH6_ISR                    
-0     003f5ab2  _DSP28x_DisableInt              
-0     003f5ab6  _DSP28x_RestoreInt              
+0     003f5aae  _DSP28x_DisableInt              
+0     003f5ab2  _DSP28x_RestoreInt              
 0     000080ea  _DSP28x_usDelay                 
 1     00000880  _DevEmuRegs                     
 0     003f5114  _DisableDog                     
@@ -792,7 +792,7 @@ page  address   name
 1     00006b40  _EQep2Regs                      
 1     00000d01  _EmuBMode                       
 1     00000d00  _EmuKey                         
-0     003f5a01  _EnableInterrupts               
+0     003f59fd  _EnableInterrupts               
 0     003f526a  _ExtOscSel                      
 1     00000a80  _FlashRegs                      
 1     00000d04  _Flash_CPUScaleFactor           
@@ -809,19 +809,19 @@ page  address   name
 1     00006ae0  _HRCap2Regs                     
 1     00006c80  _HRCap3Regs                     
 1     00006ca0  _HRCap4Regs                     
-0     003f5984  _Hardware_Config                
+0     003f5980  _Hardware_Config                
 0     003ede4e  _Hzk1                           
 0     003ede06  _Hzk2                           
 0     003edd86  _Hzk3                           
 0     003ed9e8  _Hzk4                           
 0     003f4cf6  _I2CINT1A_ISR                   
 0     003f4d00  _I2CINT2A_ISR                   
-0     003f5949  _I2C_GPIO_Init                  
-0     003f5967  _I2C_Start                      
-0     003f5972  _I2C_Stop                       
-0     003f597b  _I2C_WaitAck                    
+0     003f5945  _I2C_GPIO_Init                  
+0     003f5963  _I2C_Start                      
+0     003f596e  _I2C_Stop                       
+0     003f5977  _I2C_WaitAck                    
 1     00007900  _I2caRegs                       
-0     003f5963  _IIC_delay                      
+0     003f595f  _IIC_delay                      
 0     003f4ab2  _ILLEGAL_ISR                    
 0     003f4a76  _INT13_ISR                      
 0     003f4a80  _INT14_ISR                      
@@ -829,8 +829,8 @@ page  address   name
 1     0000ac12  _Ia_set                         
 0     000080cf  _InitFlash                      
 0     003f519e  _InitPeripheralClocks           
-0     003f59e2  _InitPieCtrl                    
-0     003f5a0a  _InitPieVectTable               
+0     003f59de  _InitPieCtrl                    
+0     003f5a06  _InitPieVectTable               
 0     003f511c  _InitPll                        
 0     003f5170  _InitPll2                       
 0     003f50f0  _InitSysCtrl                    
@@ -844,7 +844,7 @@ page  address   name
 0     003f4cb0  _MXINTA_ISR                     
 0     003f5280  _Master_EPWM_Init               
 1     00005000  _McbspaRegs                     
-0     003f5a71  _MemCopy                        
+0     003f5a6d  _MemCopy                        
 1     0000a854  _Menu_Item                      
 1     0000ac06  _Mode                           
 0     003f4aa8  _NMI_ISR                        
@@ -897,7 +897,7 @@ page  address   name
 1     00007750  _ScibRegs                       
 0     003f4570  _Send_Byte                      
 0     003f510a  _ServiceDog                     
-0     003f5ab9  _SetDBGIER                      
+0     003f5ab5  _SetDBGIER                      
 0     003f52d2  _Slave_EPWM_Init                
 1     00007040  _SpiaRegs                       
 1     00007740  _SpibRegs                       
@@ -939,29 +939,29 @@ abs   ffffffff  ___TI_prof_data_size
 abs   ffffffff  ___TI_prof_data_start           
 abs   ffffffff  ___binit__                      
 abs   ffffffff  ___c_args__                     
-0     003f5abf  ___cinit__                      
-0     003f5abf  ___etext__                      
+0     003f5abb  ___cinit__                      
+0     003f5abb  ___etext__                      
 abs   ffffffff  ___pinit__                      
 0     003f4000  ___text__                       
-0     003f5a84  __args_main                     
+0     003f5a80  __args_main                     
 1     0000a850  __lock                          
-0     003f5aa9  __nop                           
-0     003f5aa5  __register_lock                 
-0     003f5aa1  __register_unlock               
+0     003f5aa5  __nop                           
+0     003f5aa1  __register_lock                 
+0     003f5a9d  __register_unlock               
 1     0000ac52  __stack                         
-0     003f5abe  __system_post_cinit             
-0     003f5abc  __system_pre_init               
+0     003f5aba  __system_post_cinit             
+0     003f5ab8  __system_pre_init               
 1     0000a852  __unlock                        
-0     003f59b9  _abort                          
+0     003f59b5  _abort                          
 0     003ed7c0  _asc2_0806                      
 0     003ed34c  _asc2_1206                      
 0     003ecd5c  _asc2_1608                      
 0     003ec000  _asc2_2412                      
-0     003f58f3  _c_int00                        
-0     003f5a30  _copy_in                        
-0     003f5890  _cos                            
-0     003f5890  _cosf                           
-0     003f59bb  _exit                           
+0     003f58ef  _c_int00                        
+0     003f5a2c  _copy_in                        
+0     003f588c  _cos                            
+0     003f588c  _cosf                           
+0     003f59b7  _exit                           
 1     0000a480  _gImage_CUMT                    
 1     0000a855  _g_Button                       
 0     003f4832  _get_int_length                 
@@ -973,14 +973,14 @@ abs   ffffffff  ___pinit__
 1     0000a6b4  _key5_flag                      
 1     0000a6b8  _key6_flag                      
 0     003f57b9  _main                           
-0     003f5a54  _memcpy                         
+0     003f5a50  _memcpy                         
 0     003f4816  _my_itoa                        
 0     003f437c  _my_svpwm_2l_calc               
 0     003f5744  _rampgen_calc                   
 1     0000ac2a  _rampgen_vs                     
 0     003f4e07  _rsvd_ISR                       
-0     003f582a  _sin                            
-0     003f582a  _sinf                           
+0     003f5826  _sin                            
+0     003f5826  _sinf                           
 0     003f41b5  _svgendq_calc                   
 1     0000ac1a  _svpwm_2l                       
 0     003f4000  _svpwm_2l_calc                  
@@ -992,9 +992,9 @@ abs   ffffffff  ___pinit__
 1     0000aa40  _temp3                          
 1     0000ac0e  _udc                            
 abs   ffffffff  binit                           
-0     003f5abf  cinit                           
+0     003f5abb  cinit                           
 0     003f7ff6  code_start                      
-0     003f5abf  etext                           
+0     003f5abb  etext                           
 abs   ffffffff  pinit                           
 
 
@@ -1160,41 +1160,41 @@ page  address   name
 0     003f56bc  FS$$DIV                         
 0     003f5744  _rampgen_calc                   
 0     003f57b9  _main                           
-0     003f582a  _sin                            
-0     003f582a  _sinf                           
-0     003f5890  _cos                            
-0     003f5890  _cosf                           
-0     003f58f3  _c_int00                        
-0     003f5949  _I2C_GPIO_Init                  
-0     003f5963  _IIC_delay                      
-0     003f5967  _I2C_Start                      
-0     003f5972  _I2C_Stop                       
-0     003f597b  _I2C_WaitAck                    
-0     003f5984  _Hardware_Config                
-0     003f59b9  C$$EXIT                         
-0     003f59b9  _abort                          
-0     003f59bb  _exit                           
-0     003f59e2  _InitPieCtrl                    
-0     003f5a01  _EnableInterrupts               
-0     003f5a0a  _InitPieVectTable               
-0     003f5a30  _copy_in                        
-0     003f5a54  _memcpy                         
-0     003f5a71  _MemCopy                        
-0     003f5a84  __args_main                     
-0     003f5a96  U$$DIV                          
-0     003f5a9b  U$$MOD                          
-0     003f5aa1  __register_unlock               
-0     003f5aa5  __register_lock                 
-0     003f5aa9  __nop                           
-0     003f5ab2  _DSP28x_DisableInt              
-0     003f5ab6  _DSP28x_RestoreInt              
-0     003f5ab9  _SetDBGIER                      
-0     003f5abc  __system_pre_init               
-0     003f5abe  __system_post_cinit             
-0     003f5abf  ___cinit__                      
-0     003f5abf  ___etext__                      
-0     003f5abf  cinit                           
-0     003f5abf  etext                           
+0     003f5826  _sin                            
+0     003f5826  _sinf                           
+0     003f588c  _cos                            
+0     003f588c  _cosf                           
+0     003f58ef  _c_int00                        
+0     003f5945  _I2C_GPIO_Init                  
+0     003f595f  _IIC_delay                      
+0     003f5963  _I2C_Start                      
+0     003f596e  _I2C_Stop                       
+0     003f5977  _I2C_WaitAck                    
+0     003f5980  _Hardware_Config                
+0     003f59b5  C$$EXIT                         
+0     003f59b5  _abort                          
+0     003f59b7  _exit                           
+0     003f59de  _InitPieCtrl                    
+0     003f59fd  _EnableInterrupts               
+0     003f5a06  _InitPieVectTable               
+0     003f5a2c  _copy_in                        
+0     003f5a50  _memcpy                         
+0     003f5a6d  _MemCopy                        
+0     003f5a80  __args_main                     
+0     003f5a92  U$$DIV                          
+0     003f5a97  U$$MOD                          
+0     003f5a9d  __register_unlock               
+0     003f5aa1  __register_lock                 
+0     003f5aa5  __nop                           
+0     003f5aae  _DSP28x_DisableInt              
+0     003f5ab2  _DSP28x_RestoreInt              
+0     003f5ab5  _SetDBGIER                      
+0     003f5ab8  __system_pre_init               
+0     003f5aba  __system_post_cinit             
+0     003f5abb  ___cinit__                      
+0     003f5abb  ___etext__                      
+0     003f5abb  cinit                           
+0     003f5abb  etext                           
 0     003f7ff6  code_start                      
 1     00000880  _DevEmuRegs                     
 1     00000985  _SysPwrCtrlRegs                 

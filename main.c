@@ -23,7 +23,6 @@
 #pragma CODE_SECTION(svgendq_calc, "ramfuncs")
 #pragma CODE_SECTION(svpwm_2l_calc, "ramfuncs")
 #pragma CODE_SECTION(rampgen_calc, "ramfuncs")
-#pragma CODE_SECTION(my_svpwm_2l_calc, "ramfuncs")
 
 /************00.Private parameter Start*****************/
     Uint16 OLED_count = 0;  
@@ -115,8 +114,6 @@ void main()
         {
             Buzzer_Flag = 1;
             GpioDataRegs.GPBSET.bit.GPIO52 = 1;
-            GpioDataRegs.GPBSET.bit.GPIO55 = 1;
-
         }
         if(Buzzer_Flag == 1)
         {
@@ -126,7 +123,6 @@ void main()
                 Buzzer_count = 0;
                 Buzzer_Flag = 0;
                 GpioDataRegs.GPBCLEAR.bit.GPIO52 = 1;
-                GpioDataRegs.GPBCLEAR.bit.GPIO55 = 1;
             }
         }
         MENU_Item_KEY();

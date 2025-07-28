@@ -14,6 +14,7 @@
         "limits": "c",
         "cmath": "c",
         "type_traits": "c",
-        "menu.h": "c"
+        "menu.h": "c",
+        "adc_get_value.h": "c"
     }
 }
