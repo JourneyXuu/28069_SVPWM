@@ -60,12 +60,12 @@ void svpwm_2l_calc(SVPWM_2L *p)
           default:{;}
           }
  //对过调制进行调整,标准化
-          // if((t1+t2)>p->T1)
-          // {
-          // temp=t1+t2;
-          // t1=t1*p->T1/temp;
-          // t2=t2*p->T1/temp;
-          // }
+          if((t1+t2)>p->T1)
+          {
+          temp=t1+t2;
+          t1=t1*p->T1/temp;
+          t2=t2*p->T1/temp;
+          }
      //作用时间分配
           Ta=0.25*(p->T1-t1-t2);
           Tb=Ta+0.5*t1;

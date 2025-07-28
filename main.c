@@ -23,6 +23,7 @@
 #pragma CODE_SECTION(svgendq_calc, "ramfuncs")
 #pragma CODE_SECTION(svpwm_2l_calc, "ramfuncs")
 #pragma CODE_SECTION(rampgen_calc, "ramfuncs")
+#pragma CODE_SECTION(my_svpwm_2l_calc, "ramfuncs")
 
 /************00.Private parameter Start*****************/
     Uint16 OLED_count = 0;  
@@ -114,6 +115,8 @@ void main()
         {
             Buzzer_Flag = 1;
             GpioDataRegs.GPBSET.bit.GPIO52 = 1;
+            GpioDataRegs.GPBSET.bit.GPIO55 = 1;
+
         }
         if(Buzzer_Flag == 1)
         {
@@ -123,6 +126,7 @@ void main()
                 Buzzer_count = 0;
                 Buzzer_Flag = 0;
                 GpioDataRegs.GPBCLEAR.bit.GPIO52 = 1;
+                GpioDataRegs.GPBCLEAR.bit.GPIO55 = 1;
             }
         }
         MENU_Item_KEY();
@@ -170,17 +174,17 @@ interrupt void Adc_ISR(void)
 /************01.Grid connection End**************/
 
 /************02.Grid Off Begin**************/
-        rampgen_calc(&rampgen_vs);
+        // rampgen_calc(&rampgen_vs);
 
-        svpwm_2l.Ualpha = rampgen_vs.U * cos(rampgen_vs.Angle);
-        svpwm_2l.Ubeta = rampgen_vs.U * sin(rampgen_vs.Angle);
-        svpwm_2l.Udc = udc;
-        // svpwm_2l_calc(&svpwm_2l);
-        svgendq_calc(&svpwm_2l);
+        // svpwm_2l.Ualpha = rampgen_vs.U * cos(rampgen_vs.Angle);
+        // svpwm_2l.Ubeta = rampgen_vs.U * sin(rampgen_vs.Angle);
+        // svpwm_2l.Udc = udc;
+        // // svpwm_2l_calc(&svpwm_2l);
+        // // svgendq_calc(&svpwm_2l);
         // my_svpwm_2l_calc(&svpwm_2l);
-        svpwm_ua = svpwm_2l.Tcmpa * (EPWM1_TBPRD-1);
-        svpwm_ub = svpwm_2l.Tcmpb * (EPWM1_TBPRD-1);
-        svpwm_uc = svpwm_2l.Tcmpc * (EPWM1_TBPRD-1);
+        // svpwm_ua = svpwm_2l.Tcmpa * (EPWM1_TBPRD-1);
+        // svpwm_ub = svpwm_2l.Tcmpb * (EPWM1_TBPRD-1);
+        // svpwm_uc = svpwm_2l.Tcmpc * (EPWM1_TBPRD-1);
 
         // svpwm_ua = (svpwm_2l.Tcmpa + 1.0)*0.5*(EPWM1_TBPRD-1);
         // svpwm_ub = (svpwm_2l.Tcmpb + 1.0)*0.5*(EPWM1_TBPRD-1);
@@ -196,6 +200,18 @@ interrupt void Adc_ISR(void)
         if(RUN_Flag == 1)
         {
             PWM_EN();
+            rampgen_calc(&rampgen_vs);
+
+            svpwm_2l.Ualpha = rampgen_vs.U * cos(rampgen_vs.Angle);
+            svpwm_2l.Ubeta = rampgen_vs.U * sin(rampgen_vs.Angle);
+            svpwm_2l.Udc = udc;
+            // svpwm_2l_calc(&svpwm_2l);
+            // svgendq_calc(&svpwm_2l);
+            my_svpwm_2l_calc(&svpwm_2l);
+            svpwm_ua = svpwm_2l.Tcmpa * (EPWM1_TBPRD-1);
+            svpwm_ub = svpwm_2l.Tcmpb * (EPWM1_TBPRD-1);
+            svpwm_uc = svpwm_2l.Tcmpc * (EPWM1_TBPRD-1);
+
             EPwm1Regs.CMPA.half.CMPA = (unsigned short)(svpwm_ua);//(0.
             EPwm2Regs.CMPA.half.CMPA = (unsigned short)(svpwm_ub);
             EPwm3Regs.CMPA.half.CMPA = (unsigned short)(svpwm_uc);
@@ -203,13 +219,14 @@ interrupt void Adc_ISR(void)
         else
         {
             PWM_Dis();
+            rampgen_vs.U = 0;
         }
 
         if(Watch_count > 199) {Watch_count -= 200;}
         else {Watch_count++;}
-        temp1[Watch_count] = svpwm_2l.Tcmpa;//svpwm_2l.Ualpha////svpwm_ua
-        temp2[Watch_count] = svpwm_2l.Tcmpb;//svpwm_ub//svpwm_2l.Ubeta////
-        temp3[Watch_count] = svpwm_2l.Tcmpc;//svpwm_uc////
+        temp1[Watch_count] = svpwm_ua;//svpwm_2l.Ualpha//svpwm_2l.Tcmpa//
+        temp2[Watch_count] = svpwm_ub;////svpwm_2l.Ubeta//svpwm_2l.Tcmpb //
+        temp3[Watch_count] = svpwm_uc;////svpwm_2l.Tcmpc //
 
 
         // Clarke_Marco(&grid_voltage);
